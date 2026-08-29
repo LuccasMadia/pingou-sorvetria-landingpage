@@ -120,15 +120,25 @@ img, svg { max-width: 100%; display: block; }
 }
 .hero__cta { transform: rotate(-2deg); }
 
-.hero__cone {
+.hero__photo {
   position: relative;
   z-index: 1;
-  width: clamp(140px, 20vw, 200px);
-  margin: 1rem auto 0;
+  width: clamp(180px, 24vw, 260px);
+  aspect-ratio: 1;
+  margin: 1.5rem auto 0;
+  border-radius: 42% 58% 63% 37% / 55% 42% 58% 45%;
+  overflow: hidden;
+  border: 6px solid var(--white);
+  box-shadow: 0 14px 30px rgba(58,35,24,0.18);
+}
+.hero__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 @media (max-width: 600px) {
-  .hero__cone { display: none; }
+  .hero__photo { display: none; }
 }
 
 .sabores {
@@ -157,6 +167,19 @@ img, svg { max-width: 100%; display: block; }
 .flavor-card:nth-child(6n+5){ transform: rotate(-2deg); }
 .flavor-card:nth-child(6n){ transform: rotate(1.5deg); }
 
+.flavor-card__photo {
+  width: 100%;
+  height: 140px;
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+.flavor-card__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .flavor-card__tag {
   font-family: var(--font-mono);
   font-size: 0.7rem;
@@ -179,12 +202,37 @@ img, svg { max-width: 100%; display: block; }
 
 .sobre { background: var(--white); padding: 5rem 1.5rem; }
 .sobre__inner {
-  max-width: 700px;
+  max-width: 1000px;
   margin: 0 auto;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  text-align: left;
 }
+.sobre__text { flex: 1 1 360px; }
 .sobre__texto { font-size: 1.1rem; }
-.sobre__drip { width: 70px; margin: 2rem auto 0; }
+.sobre__photo {
+  position: relative;
+  flex: 1 1 320px;
+  max-width: 400px;
+  border-radius: 24px;
+  overflow: hidden;
+  transform: rotate(2deg);
+  box-shadow: 0 16px 32px rgba(58,35,24,0.15);
+}
+.sobre__photo img { width: 100%; height: 320px; object-fit: cover; }
+.sobre__drip {
+  position: absolute;
+  bottom: -20px;
+  left: -20px;
+  width: 60px;
+  filter: drop-shadow(0 4px 8px rgba(58,35,24,0.2));
+}
+
+@media (max-width: 700px) {
+  .sobre__inner { flex-direction: column; text-align: center; }
+  .sobre__photo { transform: none; }
+}
 
 .localizacao { padding: 5rem 1.5rem; }
 .localizacao__inner { max-width: 900px; margin: 0 auto; text-align: center; }
@@ -207,7 +255,9 @@ img, svg { max-width: 100%; display: block; }
 }
 
 .rodape {
-  background: var(--choc);
+  background:
+    linear-gradient(rgba(58,35,24,0.88), rgba(58,35,24,0.88)),
+    url('https://images.unsplash.com/photo-1567206563064-6f60f40a2b57?w=1600&q=50&auto=format&fit=crop') center/cover;
   color: var(--cream);
   text-align: center;
   padding: 4rem 1.5rem 2rem;

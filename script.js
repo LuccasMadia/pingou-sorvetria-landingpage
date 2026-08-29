@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .from('.hero__wordmark', { opacity: 0, scale: 0.6, rotation: -18, duration: 1.1, ease: 'elastic.out(1, 0.5)' }, '-=0.2')
     .from('.hero__tagline', { opacity: 0, y: 20, duration: 0.6, ease: 'power2.out' }, '-=0.4')
     .from('.hero__cta', { opacity: 0, scale: 0.5, rotation: -20, duration: 0.9, ease: 'elastic.out(1, 0.5)' }, '-=0.3')
-    .from('.hero__cone', { opacity: 0, x: -60, rotation: -25, duration: 1.1, ease: 'elastic.out(1, 0.5)' }, '-=0.6');
+    .from('.hero__photo', { opacity: 0, x: -60, rotation: -25, duration: 1.1, ease: 'elastic.out(1, 0.5)' }, '-=0.6');
 
   const cardRestRotations = new Map();
   document.querySelectorAll('.flavor-card').forEach((card) => {
@@ -30,13 +30,15 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   gsap.utils.toArray('.section-title').forEach((title) => {
-    gsap.to(title, {
-      rotation: 2,
-      duration: 1.4,
-      repeat: -1,
-      yoyo: true,
-      ease: 'sine.inOut'
-    });
+    gsap.fromTo(title,
+      { rotation: -6 },
+      {
+        rotation: 0,
+        duration: 1,
+        ease: 'elastic.out(1, 0.35)',
+        scrollTrigger: { trigger: title, start: 'top 85%', once: true }
+      }
+    );
   });
 
   const sobreDrip = document.querySelector('.sobre__drip');
