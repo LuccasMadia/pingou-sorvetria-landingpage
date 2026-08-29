@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ScrollTrigger.create({
         trigger: '#hero',
         start: 'top top',
-        endTrigger: '#catalogo',
+        endTrigger: '.catalogo-divider',
         end: 'top top',
         pin: true,
         pinSpacing: false

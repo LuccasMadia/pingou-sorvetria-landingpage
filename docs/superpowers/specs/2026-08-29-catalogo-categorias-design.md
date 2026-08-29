@@ -103,3 +103,17 @@ O Addendum 1 (faixa de 110px, `.catalogo__divider`/`.catalogo__divider-label`) f
 Sem mudança em `v2/script.js` — as novas seções de foto não são pinadas nem animadas (mesmo tratamento estático que `#chapterB` já tinha); os dois `ScrollTrigger.create()` existentes (`#hero`→`#catalogo` e `#chapterB`→`#sobre`) continuam apontando pros mesmos seletores, que não mudaram de posição na árvore relevante.
 
 Verificado no navegador (desktop): as 3 fotos carregam nítidas e variadas, com bom contraste pro texto da legenda.
+
+## Addendum 3 — tela cheia também para Sorvetes (toda categoria tem a sua)
+
+Pedido de acompanhamento ao Addendum 2: "deixe uma tela inteira para cada categoria de produtos, mesmo que seja 1" — ou seja, Sorvetes (a primeira categoria, que ficava só dentro do painel `#catalogo` sem foto própria) também precisa da sua seção de foto em tela cheia antes dela, igual as outras 3.
+
+**Mudanças:**
+- Nova `.catalogo-divider` inserida entre `#hero` e `#catalogo`, com foto `1569429378981` (sorvete de casquinha, still de perto), eyebrow "cardápio de hoje" (reaproveitando o texto que antes vivia dentro do painel) e `h2` "Sorvetes".
+- O painel `#catalogo` (Sorvetes) perdeu o eyebrow/`h2` "Sabores" e o `h3` "Sorvetes" internos — agora só tem a lista, igual `#gelatos`/`#milkshakes`/`#outros`. Ganhou a classe `catalogo--sub` pra ficar visualmente consistente com as outras três (mesmo padding reduzido no topo).
+- Todos os títulos de `.catalogo-divider__title` (Sorvetes/Gelatos/Milkshakes/Outros) agora são `h2` (irmãos, sem mais um `h2` "Sabores" pai) — hierarquia de heading simplificada já que "Sabores" como rótulo de página não existe mais visualmente.
+- Foto do divisor de Gelatos trocada de `1567206563064` (vitrine) para `1744303858617`, porque `1567206563064` já é a foto usada no `#chapterB` mais adiante — agora as 4 fotos de divisor (`1569429378981`, `1744303858617`, `1532678465554`, `1627373717516`) e a do `#chapterB` (`1567206563064`) são todas distintas entre si.
+
+**Bug encontrado e corrigido:** o primeiro `ScrollTrigger.create()` em `script.js` pinava `#hero` até `#catalogo` atingir o topo. Como agora existe uma seção de tela cheia inteira entre os dois, isso fazia a foto E o texto do Hero (`.hero__inner`) ficarem fixos na tela por tempo demais, vazando visualmente atrás do título "Sorvetes" do novo divisor. Corrigido trocando `endTrigger: '#catalogo'` para `endTrigger: '.catalogo-divider'` — como é seletor de classe, `querySelector` pega a primeira ocorrência no DOM (a que vem logo após o Hero), restaurando a duração original do pin (só a altura do Hero) mesmo com a nova seção no meio.
+
+Verificado no navegador (desktop): as 4 seções de tela cheia (Sorvetes/Gelatos/Milkshakes/Outros) aparecem cada uma com sua própria foto nítida, sem sobreposição de texto do Hero.
