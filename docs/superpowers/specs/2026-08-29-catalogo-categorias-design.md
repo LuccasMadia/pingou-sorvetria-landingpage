@@ -63,3 +63,53 @@ Nenhuma regra nova é necessária além do que já existe: `.catalogo__desc` já
 - v1 (`index.html` na raiz) não é alterada.
 - Sem filtro/abas interativas — as 4 categorias aparecem sempre, empilhadas, na mesma rolagem.
 - Sem sabores reais adicionais além dos 5 itens de exemplo (2 gelatos + 2 milkshakes + 1 outro) — conteúdo placeholder no tom de humor do site, a ser substituído quando o cliente fictício tiver o cardápio real dessas categorias.
+
+## Addendum — faixa de foto entre categorias
+
+Pedido de acompanhamento: usar a foto de fundo já pinada no Capítulo A (a mesma da casquinha, `1746283209293`) como elemento visual entre as categorias, pra ficar "mais bonito" — em vez de só um título de texto separando cada bloco.
+
+Validado com 3 opções via companion visual (janela estreita / faixa-divisor com foto / painel translúcido). Opção escolhida: **faixa-divisor com foto** (B).
+
+**Onde aparece:** a primeira categoria (Sorvetes) mantém o `h3.catalogo__categoria-title` de texto simples, já que vem logo abaixo do título "Sabores" e não é uma transição entre categorias. Antes de **Gelatos**, **Milkshakes** e **Outros** — ou seja, nas 3 transições — o `h3.catalogo__categoria-title` de texto é substituído por uma faixa de foto (`.catalogo__divider`).
+
+**Markup da faixa** (substitui o `<h3 class="catalogo__categoria-title">` nas categorias 2, 3 e 4):
+```html
+<div class="catalogo__divider" role="img" aria-label="Categoria: Gelatos">
+  <span class="catalogo__divider-label">Gelatos</span>
+</div>
+```
+A foto entra via CSS `background-image` (elemento decorativo, por isso `aria-label` no wrapper em vez de `<img alt>`).
+
+**CSS:**
+```css
+.catalogo__divider {
+  height: 110px;
+  border-radius: 16px;
+  margin: 0 0 0.75rem;
+  background-image: linear-gradient(180deg, rgba(58,35,24,0.15) 0%, rgba(58,35,24,0.6) 100%),
+    url('https://images.unsplash.com/photo-1746283209293-73a04e08b3ff?w=900&q=65&auto=format&fit=crop');
+  background-size: 260% auto;
+  background-position: 52% 68%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.catalogo__divider-label {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.78rem;
+  color: var(--white);
+  padding-bottom: 0.85rem;
+  opacity: 0.95;
+}
+@media (max-width: 700px) {
+  .catalogo__divider { height: 80px; }
+}
+```
+
+Mesma foto reaproveitada nas 3 faixas (Gelatos, Milkshakes, Outros) — é a foto que já está pinada atrás do Capítulo A, então repetir reforça a ideia de "a imagem do fundo aparecendo entre os blocos", em vez de introduzir fotos novas ali.
+
+`background-size`/`background-position` foram ajustados (verificados no navegador) porque a foto tem profundidade de campo rasa: um recorte simples (`cover`, posição perto do topo) caía na área desfocada do fundo. O zoom em `260% auto` + posição `52% 68%` centraliza a faixa na casquinha/cone, que é a parte nítida da foto.
+
+Sem mudança em `v2/script.js` — a faixa é puramente decorativa (CSS), não precisa de animação de entrada própria (fica dentro do fluxo normal de scroll do painel).
