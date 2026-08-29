@@ -64,52 +64,42 @@ Nenhuma regra nova é necessária além do que já existe: `.catalogo__desc` já
 - Sem filtro/abas interativas — as 4 categorias aparecem sempre, empilhadas, na mesma rolagem.
 - Sem sabores reais adicionais além dos 5 itens de exemplo (2 gelatos + 2 milkshakes + 1 outro) — conteúdo placeholder no tom de humor do site, a ser substituído quando o cliente fictício tiver o cardápio real dessas categorias.
 
-## Addendum — faixa de foto entre categorias
+## Addendum 1 (superado) — faixa de foto entre categorias
 
-Pedido de acompanhamento: usar a foto de fundo já pinada no Capítulo A (a mesma da casquinha, `1746283209293`) como elemento visual entre as categorias, pra ficar "mais bonito" — em vez de só um título de texto separando cada bloco.
+Primeira tentativa: uma faixa de ~110px com foto dentro do próprio painel `.catalogo`, no lugar do `h3.catalogo__categoria-title` de texto, antes de Gelatos/Milkshakes/Outros. Implementada, testada no navegador e commitada — mas o pedido seguinte pediu algo maior ("uma imagem que ocupe a tela inteira"), então essa faixa foi **removida** e substituída pelo Addendum 2 abaixo. Documentado aqui só como histórico da decisão.
 
-Validado com 3 opções via companion visual (janela estreita / faixa-divisor com foto / painel translúcido). Opção escolhida: **faixa-divisor com foto** (B).
+## Addendum 2 — seções de foto em tela cheia entre categorias
 
-**Onde aparece:** a primeira categoria (Sorvetes) mantém o `h3.catalogo__categoria-title` de texto simples, já que vem logo abaixo do título "Sabores" e não é uma transição entre categorias. Antes de **Gelatos**, **Milkshakes** e **Outros** — ou seja, nas 3 transições — o `h3.catalogo__categoria-title` de texto é substituído por uma faixa de foto (`.catalogo__divider`).
+Pedido de acompanhamento ao Addendum 1: a faixa pequena não bastava — o pedido era uma imagem ocupando a tela inteira entre as categorias, não só uma tarja dentro da lista.
 
-**Markup da faixa** (substitui o `<h3 class="catalogo__categoria-title">` nas categorias 2, 3 e 4):
-```html
-<div class="catalogo__divider" role="img" aria-label="Categoria: Gelatos">
-  <span class="catalogo__divider-label">Gelatos</span>
-</div>
+**Decisão de fotos:** variadas (uma por transição), não a mesma foto repetida — confirmado com o usuário.
+
+**Estrutura:** o antigo `<section class="catalogo" id="catalogo">` único (que continha as 4 categorias) foi quebrado em blocos alternados, no mesmo padrão que já existia entre Hero→Catálogo e entre a foto da vitrine→Sobre (painel com `border-radius` subindo por cima de uma foto full-bleed):
+
 ```
-A foto entra via CSS `background-image` (elemento decorativo, por isso `aria-label` no wrapper em vez de `<img alt>`).
-
-**CSS:**
-```css
-.catalogo__divider {
-  height: 110px;
-  border-radius: 16px;
-  margin: 0 0 0.75rem;
-  background-image: linear-gradient(180deg, rgba(58,35,24,0.15) 0%, rgba(58,35,24,0.6) 100%),
-    url('https://images.unsplash.com/photo-1746283209293-73a04e08b3ff?w=900&q=65&auto=format&fit=crop');
-  background-size: 260% auto;
-  background-position: 52% 68%;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-}
-.catalogo__divider-label {
-  font-family: var(--font-mono);
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.78rem;
-  color: var(--white);
-  padding-bottom: 0.85rem;
-  opacity: 0.95;
-}
-@media (max-width: 700px) {
-  .catalogo__divider { height: 80px; }
-}
+#catalogo (painel cream, título "Sabores" + categoria Sorvetes)
+  → .catalogo-divider (foto cheia, 100vh) — legenda "Gelatos"
+  → #gelatos (painel cream, .catalogo.catalogo--sub, só a lista)
+  → .catalogo-divider (foto cheia, 100vh) — legenda "Milkshakes"
+  → #milkshakes (painel cream, .catalogo.catalogo--sub, só a lista)
+  → .catalogo-divider (foto cheia, 100vh) — legenda "Outros"
+  → #outros (painel cream, .catalogo.catalogo--sub, só a lista)
+  → #chapterB (já existia, sem mudança) → #sobre
 ```
 
-Mesma foto reaproveitada nas 3 faixas (Gelatos, Milkshakes, Outros) — é a foto que já está pinada atrás do Capítulo A, então repetir reforça a ideia de "a imagem do fundo aparecendo entre os blocos", em vez de introduzir fotos novas ali.
+Cada `.catalogo-divider` é uma seção independente (não pinada — segue o mesmo padrão simples do `#chapterB` já existente, sem `ScrollTrigger` novo), com foto full-bleed, gradiente escuro (`.catalogo-divider__overlay`) e um bloco central (`.catalogo-divider__inner`) com eyebrow "a seguir no cardápio" + `h3` grande (Baloo 2, 800) com o nome da próxima categoria.
 
-`background-size`/`background-position` foram ajustados (verificados no navegador) porque a foto tem profundidade de campo rasa: um recorte simples (`cover`, posição perto do topo) caía na área desfocada do fundo. O zoom em `260% auto` + posição `52% 68%` centraliza a faixa na casquinha/cone, que é a parte nítida da foto.
+Cada painel subsequente (`#gelatos`, `#milkshakes`, `#outros`) reaproveita a classe `.catalogo` (mesmo fundo cream, `border-radius: 32px 32px 0 0`, sombra) com um modificador `.catalogo--sub` que reduz o padding superior, já que não repete o título "Sabores" — só a lista de itens daquela categoria (numeração reiniciando em `01`, sem duplicar o nome da categoria como texto, pois a legenda já apareceu na foto anterior).
 
-Sem mudança em `v2/script.js` — a faixa é puramente decorativa (CSS), não precisa de animação de entrada própria (fica dentro do fluxo normal de scroll do painel).
+**Fotos escolhidas** (todas já usadas em algum lugar do site, pedidas em tamanho maior `w=1600` para a versão full-bleed):
+- Antes de Gelatos: `1567206563064` (vitrine de sorvetes coloridos, mesma da seção `#chapterB`).
+- Antes de Milkshakes: `1532678465554` (morango).
+- Antes de Outros: `1627373717516` (cones variados / doce de leite).
+
+**CSS novo** (`v2/style.css`): `.catalogo-divider`, `.catalogo-divider__bg`, `.catalogo-divider__overlay`, `.catalogo-divider__inner`, `.catalogo-divider__eyebrow`, `.catalogo-divider__title` — espelham a estrutura de `.chapter-bg` já existente, com classes próprias pra não colidir com o `ScrollTrigger` que já usa `#chapterB` e `.chapter-bg__caption` no `script.js`. `.catalogo--sub { padding-top: 3rem; }` como único ajuste no painel reaproveitado.
+
+O Addendum 1 (faixa de 110px, `.catalogo__divider`/`.catalogo__divider-label`) foi removido do CSS e do HTML.
+
+Sem mudança em `v2/script.js` — as novas seções de foto não são pinadas nem animadas (mesmo tratamento estático que `#chapterB` já tinha); os dois `ScrollTrigger.create()` existentes (`#hero`→`#catalogo` e `#chapterB`→`#sobre`) continuam apontando pros mesmos seletores, que não mudaram de posição na árvore relevante.
+
+Verificado no navegador (desktop): as 3 fotos carregam nítidas e variadas, com bom contraste pro texto da legenda.
