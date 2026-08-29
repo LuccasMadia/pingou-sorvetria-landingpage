@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PINGOU! Sorveteria Artesanal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="cursor-drip" aria-hidden="true"></div>
+
+<section class="hero" id="hero">
+  <div class="hero__drip" aria-hidden="true">
+    <svg viewBox="0 0 200 240" preserveAspectRatio="none">
+      <path d="M100 0 C160 60 190 110 150 170 C120 215 70 215 45 175 C10 120 40 55 100 0 Z"/>
+    </svg>
+  </div>
+
+  <div class="hero__inner">
+    <p class="hero__eyebrow">sorveteria artesanal desde nunca</p>
+    <h1 class="hero__wordmark">PINGOU!</h1>
+    <p class="hero__tagline">Sorvete de verdade, feito por gente que não sabe segurar casquinha direito.</p>
+    <a href="#sabores" class="btn btn--cta hero__cta">Ver sabores</a>
+  </div>
+
+  <svg class="hero__cone" viewBox="0 0 200 260" aria-hidden="true">
+    <g class="cone__lines" stroke="#3A2318" stroke-width="2" opacity="0.35">
+      <line x1="70" y1="140" x2="108" y2="232"/>
+      <line x1="82" y1="140" x2="112" y2="222"/>
+      <line x1="94" y1="140" x2="116" y2="212"/>
+      <line x1="106" y1="140" x2="120" y2="202"/>
+      <line x1="118" y1="140" x2="124" y2="192"/>
+      <line x1="130" y1="140" x2="128" y2="180"/>
+    </g>
+    <path class="cone__body" d="M62 138 L138 138 L104 236 Q100 246 96 236 Z" fill="#E8B94A"/>
+    <path class="scoop scoop--strawberry" d="M52 148 C52 104 148 104 148 148 C148 170 118 152 100 152 C82 152 52 170 52 148 Z" fill="#F4A6B7"/>
+    <path class="scoop scoop--mint" d="M64 112 C64 74 136 74 136 112 C136 132 112 118 100 118 C88 118 64 132 64 112 Z" fill="#B8DFC9"/>
+    <circle class="cherry" cx="100" cy="62" r="15" fill="#E8342A"/>
+    <path class="cherry__stem" d="M100 47 Q108 28 122 24" stroke="#3A2318" stroke-width="3" fill="none" stroke-linecap="round"/>
+  </svg>
+</section>
+
+<section class="sabores" id="sabores">
+  <h2 class="section-title">Sabores de hoje (e de sempre, mas hoje também)</h2>
+  <div class="sabores__grid">
+    <article class="flavor-card">
+      <span class="flavor-card__tag">clássico</span>
+      <h3 class="flavor-card__name">Chocolate Trapalhão</h3>
+      <p class="flavor-card__desc">Chocolate meio amargo com pedaços de brownie queimado de propósito.</p>
+    </article>
+    <article class="flavor-card">
+      <span class="flavor-card__tag">premium</span>
+      <h3 class="flavor-card__name">Morango Zoeira</h3>
+      <p class="flavor-card__desc">Morango de verdade com calda que escorre pra fora sem pedir licença.</p>
+    </article>
+    <article class="flavor-card">
+      <span class="flavor-card__tag">edição limitada</span>
+      <h3 class="flavor-card__name">Pistache Categórico</h3>
+      <p class="flavor-card__desc">Pistache torrado na hora, sem samba no pé mas com sabor de sobra.</p>
+    </article>
+    <article class="flavor-card">
+      <span class="flavor-card__tag">clássico</span>
+      <h3 class="flavor-card__name">Doce de Leite Cangaceiro</h3>
+      <p class="flavor-card__desc">Doce de leite cremoso com raspas de rapadura por cima.</p>
+    </article>
+    <article class="flavor-card">
+      <span class="flavor-card__tag">premium</span>
+      <h3 class="flavor-card__name">Limão Bagunçado</h3>
+      <p class="flavor-card__desc">Azedinho, gelado, com raspas de limão jogadas sem dó nenhuma.</p>
+    </article>
+    <article class="flavor-card">
+      <span class="flavor-card__tag">clássico</span>
+      <h3 class="flavor-card__name">Café com Rapadura</h3>
+      <p class="flavor-card__desc">Café intenso pra sorveteria que não tira folga nem de madrugada.</p>
+    </article>
+    <article class="flavor-card">
+      <span class="flavor-card__tag">edição limitada</span>
+      <h3 class="flavor-card__name">Coco Queimado</h3>
+      <p class="flavor-card__desc">Coco tostado direto na chama, com aquele sabor meio defumado.</p>
+    </article>
+    <article class="flavor-card">
+      <span class="flavor-card__tag">premium</span>
+      <h3 class="flavor-card__name">Uva Atrapalhada</h3>
+      <p class="flavor-card__desc">Uva roxa com bolinhas de sorvete que erraram o formato de propósito.</p>
+    </article>
+  </div>
+</section>
+
+<section class="sobre" id="sobre">
+  <div class="sobre__inner">
+    <h2 class="section-title">Nossa história (meio torta, como tudo aqui)</h2>
+    <p class="sobre__texto">A PINGOU! nasceu de um acidente: uma máquina de sorvete desregulada, duas pessoas sem noção nenhuma de proporção e uma vontade indecente de fazer sorvete bom. A gente ainda erra a mão todo santo dia — só que agora é de propósito, e sempre a seu favor.</p>
+    <svg class="sobre__drip" viewBox="0 0 120 140" aria-hidden="true">
+      <path d="M60 0 C95 35 110 65 88 100 C70 128 40 128 25 98 C5 60 25 30 60 0 Z" fill="#F4A6B7"/>
+    </svg>
+  </div>
+</section>
+
+<section class="localizacao" id="localizacao">
+  <div class="localizacao__inner">
+    <h2 class="section-title">Onde a bagunça acontece</h2>
+    <div class="localizacao__grid">
+      <div class="localizacao__info">
+        <p><strong>Endereço:</strong> Rua das Casquinhas, 123 — Bairro Sorvete Bom</p>
+        <p><strong>Horário:</strong> Terça a domingo, 13h às 22h</p>
+        <p class="localizacao__nota">(segunda a gente também erra a mão e esquece de abrir)</p>
+      </div>
+      <svg class="localizacao__pin" viewBox="0 0 100 130" aria-hidden="true">
+        <path d="M50 0 C78 0 98 22 98 50 C98 85 50 130 50 130 C50 130 2 85 2 50 C2 22 22 0 50 0 Z" fill="#E8342A"/>
+        <circle cx="50" cy="48" r="18" fill="#FBF3E7"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<footer class="rodape" id="contato">
+  <p class="rodape__cta">Vem pingar com a gente.</p>
+  <div class="rodape__social">
+    <a href="#" class="rodape__icon" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" width="24" height="24"><rect x="2" y="2" width="20" height="20" rx="6" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="18" cy="6" r="1.4" fill="currentColor"/></svg>
+    </a>
+    <a href="#" class="rodape__icon" aria-label="TikTok">
+      <svg viewBox="0 0 24 24" width="24" height="24"><path d="M14 2v12.5a3.5 3.5 0 1 1-3-3.46V8a6 6 0 1 0 6 6V8.5a6.5 6.5 0 0 0 4-1.5V4a4 4 0 0 1-4-2h-3z" fill="currentColor"/></svg>
+    </a>
+  </div>
+  <p class="rodape__fine">PINGOU! Sorveteria — projeto de demonstração, sem sorvete de verdade (por enquanto).</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
