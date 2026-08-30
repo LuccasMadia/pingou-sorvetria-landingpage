@@ -41,21 +41,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   ScrollTrigger.matchMedia({
     '(min-width: 701px)': function () {
-      ScrollTrigger.create({
-        trigger: '#hero',
-        start: 'top top',
-        endTrigger: '.catalogo-divider',
-        end: 'top top',
-        pin: true,
-        pinSpacing: false
-      });
-      ScrollTrigger.create({
-        trigger: '#chapterB',
-        start: 'top top',
-        endTrigger: '#sobre',
-        end: 'top top',
-        pin: true,
-        pinSpacing: false
+      [
+        { trigger: '#hero', endTrigger: '#catalogo' },
+        { trigger: '#dividerGelatos', endTrigger: '#gelatos' },
+        { trigger: '#dividerMilkshakes', endTrigger: '#milkshakes' },
+        { trigger: '#dividerOutros', endTrigger: '#outros' },
+        { trigger: '#chapterB', endTrigger: '#sobre' }
+      ].forEach(({ trigger, endTrigger }) => {
+        ScrollTrigger.create({
+          trigger,
+          start: 'top top',
+          endTrigger,
+          end: 'top top',
+          pin: true,
+          pinSpacing: false
+        });
       });
     }
   });
