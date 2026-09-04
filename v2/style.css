@@ -123,7 +123,7 @@ img, svg { max-width: 100%; display: block; }
   padding: 4.5rem 1.5rem 4rem;
   box-shadow: 0 -20px 40px rgba(0,0,0,0.15);
 }
-.catalogo__inner { max-width: 760px; margin: 0 auto; }
+.catalogo__inner { max-width: 1040px; margin: 0 auto; }
 .catalogo__categoria { margin-top: 3rem; }
 .catalogo__categoria:first-child { margin-top: 0; }
 .catalogo__categoria-title {
@@ -144,8 +144,17 @@ img, svg { max-width: 100%; display: block; }
   padding: 1.1rem 0;
   border-bottom: 1px solid rgba(58,35,24,0.1);
   transition: background 0.25s ease;
+  min-width: 0;
 }
 .catalogo__item:last-child { border-bottom: none; }
+@media (min-width: 701px) {
+  .catalogo__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 3rem;
+  }
+  .catalogo__item:nth-last-child(-n+2) { border-bottom: none; }
+}
 .catalogo__item:hover { background: rgba(232,52,42,0.045); }
 .catalogo__num {
   font-family: var(--font-mono);
