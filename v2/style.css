@@ -166,7 +166,8 @@ img, svg { max-width: 100%; display: block; }
 .catalogo__photo {
   width: 64px;
   height: 64px;
-  border-radius: 12px;
+  border-radius: 12px 12px 0 0;
+  background: transparent;
   overflow: hidden;
   flex-shrink: 0;
 }
