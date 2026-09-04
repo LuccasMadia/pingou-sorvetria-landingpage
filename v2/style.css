@@ -216,6 +216,7 @@ img, svg { max-width: 100%; display: block; }
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+  border-radius: 0 0 28px 28px;
 }
 #dividerGelatos { background-image: url('https://images.unsplash.com/photo-1567206563064-6f60f40a2b57?w=1600&q=70&auto=format&fit=crop'); }
 #dividerMilkshakes { background-image: url('https://images.unsplash.com/photo-1532678465554-94846274c297?w=1600&q=70&auto=format&fit=crop'); }
@@ -280,6 +281,7 @@ img, svg { max-width: 100%; display: block; }
   z-index: 1;
   background: var(--white);
   border-radius: 32px 32px 0 0;
+  margin-top: -32px;
   padding: 4.5rem 1.5rem;
   box-shadow: 0 -20px 40px rgba(0,0,0,0.15);
 }
